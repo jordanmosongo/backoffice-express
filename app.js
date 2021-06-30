@@ -1,16 +1,14 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const cors = require("cors");
-const pool = require("./util/database");
+const skillRoutes = require("./routes/skillRoutes");
 
 const app = express();
-app.use(cors);
 
-pool
-  .execute("SELECT * FROM skill")
-  .then(([rows]) => {
-    console.log(rows);
-  })
-  .catch((err) => console.log(err));
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(skillRoutes);
 
 app.listen(3200, () => {
   console.log("A l'ecoute du port 3200");
