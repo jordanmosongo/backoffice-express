@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const skillRoutes = require("./routes/skillRoutes");
+const projectRoutes = require("./controllers/projectControllers");
 
 const app = express();
 

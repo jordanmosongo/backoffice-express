@@ -17,6 +17,9 @@ class Skill {
   static fetchAll() {
     return pool.execute("select * from skills");
   }
+  static findOne(id) {
+    return pool.execute("SELECT * FROM skills WHERE skillId = ?", [id]);
+  }
   static update(id, skill) {
     const { skillName } = skill;
     return pool.execute(

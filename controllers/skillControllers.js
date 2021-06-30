@@ -1,15 +1,6 @@
 const Skill = require("../models/skill");
 const { v4: uuidv4 } = require("uuid");
 
-exports.fetchAll = (req, res, next) => {
-  Skill.fetchAll()
-    .then(([rows]) => {
-      console.log(rows);
-      return res.status(201).json(rows);
-    })
-    .catch((err) => console.log(err));
-};
-
 exports.save = (req, res, next) => {
   const skill = new Skill(uuidv4(), "realisation des interfaces dynamiques");
   skill
@@ -20,6 +11,15 @@ exports.save = (req, res, next) => {
     })
     .catch((err) => console.log(err.message));
 };
+exports.fetchAll = (req, res, next) => {
+  Skill.fetchAll()
+    .then(([rows]) => {
+      console.log(rows);
+      return res.status(201).json(rows);
+    })
+    .catch((err) => console.log(err));
+};
+exports.findOne = (req, res, next) => {};
 exports.update = (req, res, next) => {
   const id = req.params.id;
   Skill.update(id, req.body)
